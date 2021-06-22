@@ -1,0 +1,48 @@
+<div id="body" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
+  <section id="transport" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around stretch">
+
+    <article class="search">
+      <mat-button-toggle-group (change)="changeTransport($event)">
+        <mat-button-toggle checked value="o">Ônibus</mat-button-toggle>
+        <mat-button-toggle value="l">Lotação</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field appearance="outline" style="width: 100%; padding: 5px;">
+        <mat-label>Pesquisar por nome</mat-label>
+        <input type="search" (input)="changeSearch($event)" matInput placeholder="Ex. Circular Centro">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+    </article>
+
+    <article class="transports">
+      <div *ngIf="!applyingFilter && transports?.length">
+        <div *ngFor="let transport of transports" class="transports-map">
+          <mat-card class="transport" (click)="itinerario.setItinerary(transport.id)">
+            <div fxLayout="row" matTooltip={{transport.nome}}>
+              <div mat-card-avatar [class]="'img ' + getImgStyle()"></div>
+              <div fxLayout="column">
+                <mat-card-title>{{transport.nome}}</mat-card-title>
+                <mat-card-subtitle>
+                  Linha: {{transport.codigo.split('-')[0]}}
+                  &nbsp;&nbsp;&nbsp;
+                  Sentido: {{transport.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
+                </mat-card-subtitle>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <div *ngIf="!applyingFilter && !transports?.length">
+        <h1>
+          Nenhum dado encontrado
+        </h1>
+      </div>
+    </article>
+  </section>
+
+  <section id="map" #Map>
+    <article id="itinerary">
+      <itinerario></itinerario>
+    </article>
+  </section>
+</div>

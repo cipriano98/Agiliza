@@ -1,0 +1,58 @@
+#transport .search {
+  height: 20vh;
+  overflow: none;
+  width: 450px;
+  // background-color: #000;
+}
+
+#transport .search  mat-icon{
+  color: #666;
+}
+
+#transport .transports {
+  overflow: hidden;
+  height: 70vh;
+  width: 450px;
+}
+
+#transport .transports-map {
+  padding: 0 5px 5px 0;
+}
+
+#transport .transports:hover {
+  overflow: overlay;
+}
+
+#transport .transport:hover {
+  cursor: pointer
+}
+
+#transport .transport {
+  margin-right: 10px;
+  height: 30px;
+}
+
+#transport .transport {
+  overflow: hidden;
+}
+
+#transport .img {
+  background-size: cover;
+  margin-right: 15px;
+}
+
+#transport .img.img-onibus {
+  background-image: url('../../assets/img/icone2.jpg');
+  border-bottom: 5px solid blue;
+}
+
+#transport .img.img-lotacao {
+  background-image: url('../../assets/img/icone2.jpg');
+  border-bottom: 5px solid red;
+}
+
+#map {
+  background: #95ec21;
+  width: 100%;
+  height: 100vh;
+}

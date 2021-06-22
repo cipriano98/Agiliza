@@ -1,0 +1,28 @@
+::ng-deep mat-card-title {
+  color: #555 !important;
+  font-size: 14px !important;
+}
+
+/* width */
+::ng-deep ::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+/* Track */
+::ng-deep ::-webkit-scrollbar-track {
+  background-color: transparent;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::ng-deep ::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #999;
+}
+
+
+/* Handle on hover */
+::ng-deep ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
