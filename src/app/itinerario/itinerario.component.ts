@@ -17,6 +17,10 @@ export class ItinerarioComponent implements OnInit {
   itinerarySelected!: Transports
   itinerary!: Itinerario
   coords: any[] = []
+  mapStyle = {
+    light: 'mapbox://styles/mapbox/streets-v11',
+    dark: 'mapbox://styles/mapbox/dark-v10',
+  }
   // coords: Coord[] = []
   map!: mapbox.Map
   constructor(
@@ -29,7 +33,7 @@ export class ItinerarioComponent implements OnInit {
 
     const map: mapbox.Map = new box.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: this.mapStyle.dark,
       center: [
         -51.22787310938000000, // Longitude
         -30.03251157730300000, // Latitude
@@ -55,7 +59,8 @@ export class ItinerarioComponent implements OnInit {
             coordinates,
           }
         },
-      });
+      })
+      map.addControl(new mapbox.NavigationControl())
       map.addLayer({
         id: 'route',
         type: 'line',
@@ -98,45 +103,17 @@ export class ItinerarioComponent implements OnInit {
       console.dir(this.coords.length)
       console.dir(this.coords.length - 1)
       console.dir(this.coords.length - 1 / 2)
-      const coord = +String((this.coords.length -1) / 2).split('.')[0]
+      const coord = +String((this.coords.length - 1) / 2).split('.')[0]
       console.dir(coord)
 
       const map: mapbox.Map = new mapbox.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: this.mapStyle.dark,
         accessToken: environment.accessTokenMapBox,
         center: this.coords[coord],
         zoom: 13
       })
-      // const map = this.map
-      // const coordinates = this.coords
-      // map.on('load', function () {
-      //   map.addSource('route', {
-      //     type: 'geojson',
-      //     data: {
-      //       type: 'Feature',
-      //       properties: {},
-      //       geometry: {
-      //         type: 'LineString',
-      //         coordinates,
-      //       }
-      //     },
-      //   });
-      // })
 
-      // this.map.addLayer({
-      //   id: 'route',
-      //   type: 'line',
-      //   source: 'route',
-      //   layout: {
-      //     'line-join': 'round',
-      //     'line-cap': 'round'
-      //   },
-      //   paint: {
-      //     'line-color': this.transportSelected == 'o' ? 'blue' : 'red',
-      //     'line-width': 5
-      //   }
-      // })
       this.renderMap(map)
       console.dir(this.coords);
     })
