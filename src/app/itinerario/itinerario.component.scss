@@ -6,8 +6,9 @@
 #itinerary-preview {
     width: 450px;
     height: 30px;
-    margin: 5px;
+    /* top bottom right left*/
     position: absolute;
+    top: 5px;
     z-index: 2;
 }
 
@@ -25,7 +26,7 @@
     background-image: url('../../assets/img/icone2.jpg');
     border-bottom: 5px solid blue;
 }
-  
+
 #itinerary-preview .img.img-lotacao {
     background-image: url('../../assets/img/icone2.jpg');
     border-bottom: 5px solid red;

@@ -1,16 +1,18 @@
-<div id="itinerario">
-  <mat-card *ngIf="itinerary" id="itinerary-preview">
-    <div fxLayout="row">
-      <div mat-card-avatar [class]="'img ' + getImgStyle()"></div>
-      <div fxLayout="column" class="preview">
-        <mat-card-title>{{itinerary.nome}}</mat-card-title>
-        <mat-card-subtitle>
-          Linha: {{itinerary.codigo.split('-')[0]}}
-          &nbsp;&nbsp;&nbsp;
-          Sentido: {{itinerary.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
-        </mat-card-subtitle>
+<article id="itinerario">
+  <div fxLayout="column" fxLayoutAlign="center center" style="height: 30px;">
+    <mat-card *ngIf="itinerary" id="itinerary-preview">
+      <div fxLayout="row">
+        <div mat-card-avatar [class]="'img ' + getImgStyle()"></div>
+        <div fxLayout="column" class="preview">
+          <mat-card-title>{{itinerary.nome}}</mat-card-title>
+          <mat-card-subtitle>
+            Linha: {{itinerary.codigo.split('-')[0]}}
+            &nbsp;&nbsp;&nbsp;
+            Sentido: {{itinerary.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
+          </mat-card-subtitle>
+        </div>
       </div>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
   <div id="map" class="map-container"></div>
-</div>
+</article>
