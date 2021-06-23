@@ -1,3 +1,16 @@
 <div id="itinerario">
-  <div id="map" class="map-container"> </div>
+  <mat-card *ngIf="itinerary" id="itinerary-preview">
+    <div fxLayout="row">
+      <div mat-card-avatar [class]="'img ' + getImgStyle()"></div>
+      <div fxLayout="column" class="preview">
+        <mat-card-title>{{itinerary.nome}}</mat-card-title>
+        <mat-card-subtitle>
+          Linha: {{itinerary.codigo.split('-')[0]}}
+          &nbsp;&nbsp;&nbsp;
+          Sentido: {{itinerary.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
+        </mat-card-subtitle>
+      </div>
+    </div>
+  </mat-card>
+  <div id="map" class="map-container"></div>
 </div>
