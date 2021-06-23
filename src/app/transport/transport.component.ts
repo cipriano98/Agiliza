@@ -17,6 +17,7 @@ export class TransportComponent implements OnInit {
   transports!: Transport[]
   transportsFilter!: Transport[]
   itinerary!: any
+  active?: number
   transportSelected: Transports = 'o'
 
   constructor(
@@ -29,8 +30,19 @@ export class TransportComponent implements OnInit {
   }
 
   getImgStyle() {
-    const style: string = this.transportSelected == 'o' ? 'img-onibus' : 'img-lotacao' 
+    const style: string = this.transportSelected == 'o' ? 'img-onibus' : 'img-lotacao'
     return `img ${style}`
+  }
+
+  isActive(id: number) {
+    if(!this.active) this.active = 0
+    const style: string = this.active === id ? 'active' : ''
+    return style
+  }
+
+  setItinerary(id: number){
+    this.active = id
+    this.itinerario.setItinerary(id)
   }
 
   render(transport: Transports) {
@@ -43,7 +55,7 @@ export class TransportComponent implements OnInit {
   }
 
   changeTransport(change: MatButtonToggleChange) {
-    this.transportSelected = change.value 
+    this.transportSelected = change.value
     this.applyingFilter = true
     this.render(change.value as Transports)
   }
