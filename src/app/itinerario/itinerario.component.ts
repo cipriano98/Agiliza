@@ -35,10 +35,12 @@ export class ItinerarioComponent implements OnInit {
       container: 'map',
       style: this.mapStyle.dark,
       center: [
-        -51.22787310938000000, // Longitude
-        -30.03251157730300000, // Latitude
+        -51.0976548, // Longitude
+        -30.0518008, // Latitude
+        // -51.22787310938000000,
+        // -30.03251157730300000,
       ],
-      zoom: 13
+      zoom: 11
     })
     this.renderMap(map)
   }
@@ -111,7 +113,7 @@ export class ItinerarioComponent implements OnInit {
         style: this.mapStyle.dark,
         accessToken: environment.accessTokenMapBox,
         center: this.coords[coord],
-        zoom: 13
+        zoom: 11
       })
 
       this.renderMap(map)
