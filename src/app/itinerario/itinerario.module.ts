@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ItinerarioComponent } from './itinerario.component';
 import { ItinerarioService } from './itinerario.service';
 import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatCardModule
+    FlexLayoutModule,
+    MatCardModule,
   ],
   declarations: [ItinerarioComponent],
   exports: [ItinerarioComponent],
