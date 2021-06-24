@@ -1,12 +1,14 @@
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
   <section id="transport" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
 
-    <article class="search" fxLayoutAlign="space-between stretch" fxLayout="column" style="width: 435px">
-      <mat-button-toggle-group (change)="changeTransport($event)">
-        <mat-button-toggle checked value="o">Ônibus</mat-button-toggle>
-        <mat-button-toggle value="l">Lotação</mat-button-toggle>
-      </mat-button-toggle-group>
-      <mat-form-field style="width: 100%;">
+    <article class="search" fxLayout="column" fxLayoutAlign="space-between" style="width: 435px">
+      <div>
+        <mat-button-toggle-group fxLayout="row" fxLayoutAlign="space-around" (change)="changeTransport($event)">
+          <mat-button-toggle style="width: 100%;" checked value="o">Ônibus</mat-button-toggle>
+          <mat-button-toggle style="width: 100%;" value="l">Lotação</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Pesquisar por nome</mat-label>
         <input type="search" (input)="changeSearch($event)" matInput placeholder="Ex. Circular Centro">
         <mat-icon matPrefix>search</mat-icon>
@@ -46,7 +48,7 @@
           <div>
             <mat-card-title>Sentido 1:</mat-card-title>
             <mat-card-subtitle>
-              Bairro-Terminal | Bairro-Centro | Norte-Leste Norte-Sul | Circular
+              Bairro-Terminal | Bairro-Centro | Norte-Leste | Norte-Sul | Circular
             </mat-card-subtitle>
           </div>
           <div>
