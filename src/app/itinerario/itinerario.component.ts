@@ -29,25 +29,23 @@ export class ItinerarioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const box: typeof mapbox = mapbox
-    box.accessToken = environment.accessTokenMapBox
+    this.renderMap()
+  }
 
-    const map: mapbox.Map = new box.Map({
+  private renderMap() {
+
+    this.map = new mapbox.Map({
       container: 'map',
       style: this.mapStyle.light,
+      accessToken: environment.accessTokenMapBox,
+      testMode: true,
       center: [
         -51.0976548, // Longitude
         -30.0518008, // Latitude
-        // -51.22787310938000000,
-        // -30.03251157730300000,
       ],
       zoom: 11
     })
-    this.map = map
-    this.renderMap(this.map)
-  }
 
-  private renderMap(map: mapbox.Map) {
     this.map.on('load', () => {
       this.map.addControl(new mapbox.NavigationControl())
     })
@@ -78,7 +76,6 @@ export class ItinerarioComponent implements OnInit {
       const coord = +String((this.coords.length - 1) / 2).split('.')[0]
 
       this.map.setCenter(this.coords[coord])
-      const coordinates: any[] = this.coords
       if (this.previusId) {
         this.map.removeLayer('route')
         this.map.removeSource('route')
@@ -90,7 +87,7 @@ export class ItinerarioComponent implements OnInit {
           properties: {},
           geometry: {
             type: 'LineString',
-            coordinates,
+            coordinates: this.coords,
           }
         },
       })
