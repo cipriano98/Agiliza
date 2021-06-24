@@ -1,9 +1,9 @@
 #transport .search {
-  height: 12vh;
+  height: 15vh;
   overflow: none;
   margin-right: 10px;
   width: 100%;
-  background-color: #ccc;
+  // background-color: #ccc;
   border-radius: 5px;
 }
 
@@ -14,7 +14,7 @@
 #transport .transports {
   white-space: nowrap;
   overflow: hidden;
-  height: 68vh;
+  height: 60vh;
 }
 
 #transport .transports-map {
@@ -61,8 +61,7 @@
 }
 
 #transport #subtitle {
-  margin-top: 10px;
-  height: 10vh;
+  height: 14vh;
 }
 
 #map {

@@ -33,7 +33,7 @@ export class ItinerarioComponent implements OnInit {
 
     const map: mapbox.Map = new box.Map({
       container: 'map',
-      style: this.mapStyle.dark,
+      style: this.mapStyle.light,
       center: [
         -51.0976548, // Longitude
         -30.0518008, // Latitude
@@ -110,7 +110,7 @@ export class ItinerarioComponent implements OnInit {
 
       const map: mapbox.Map = new mapbox.Map({
         container: 'map',
-        style: this.mapStyle.dark,
+        style: this.mapStyle.light,
         accessToken: environment.accessTokenMapBox,
         center: this.coords[coord],
         zoom: 11
