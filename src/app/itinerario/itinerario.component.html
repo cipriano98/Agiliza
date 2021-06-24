@@ -1,6 +1,6 @@
 <article id="itinerario">
   <div fxLayout="column" fxLayoutAlign="center center" style="height: 30px;">
-    <mat-card *ngIf="itinerary" id="itinerary-preview">
+    <mat-card *ngIf="itinerary" id="itinerary-preview" (click)="centralizarRota()">
       <div fxLayout="row">
         <div mat-card-avatar [class]="'img ' + getImgStyle()"></div>
         <div fxLayout="column" class="preview">

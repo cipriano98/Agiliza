@@ -18,18 +18,26 @@ export class ItinerarioComponent implements OnInit {
   itinerary!: Itinerario
   coords: any[] = []
   previusId!: number
+  markerA!: mapbox.Marker
+  markerB!: mapbox.Marker
   mapStyle = {
     light: 'mapbox://styles/mapbox/streets-v11',
     dark: 'mapbox://styles/mapbox/dark-v10',
   }
   // coords: Coord[] = []
   map!: mapbox.Map
+  mapboxData: any
   constructor(
     private readonly service: ItinerarioService
   ) { }
 
   ngOnInit() {
-    this.renderMap()
+    if (!mapbox.supported()) {
+      alert('Your browser does not support Mapbox GL');
+    }
+    else {
+      this.renderMap()
+    }
   }
 
   private renderMap() {
@@ -48,6 +56,7 @@ export class ItinerarioComponent implements OnInit {
 
     this.map.on('load', () => {
       this.map.addControl(new mapbox.NavigationControl())
+      this.map.addControl(new mapbox.FullscreenControl())
     })
 
   }
@@ -58,14 +67,20 @@ export class ItinerarioComponent implements OnInit {
   }
 
   public setItinerary(id: number) {
+    if (this.previusId == id) return
+
     this.service.getItinerary(id).subscribe(itinerary => {
       this.itinerary = itinerary
       this.itinerarySelected = this.transportSelected
       const coords: any = itinerary
       this.coords = []
+      if (this.markerA && this.markerB) {
+        this.markerA.remove()
+        this.markerB.remove()
+      }
       Object.keys(coords).forEach((key, value) => {
         if (key != 'nome' && key != 'codigo' && key != 'idlinha') {
-          const coordinate = [
+          const coordinate: [number, number] = [
             coords[value].lng,
             coords[value].lat,
           ]
@@ -73,25 +88,25 @@ export class ItinerarioComponent implements OnInit {
         }
       })
 
-      const coord = +String((this.coords.length - 1) / 2).split('.')[0]
-
-      this.map.setCenter(this.coords[coord])
       if (this.previusId) {
         this.map.removeLayer('route')
         this.map.removeSource('route')
       }
+      this.mapboxData = {
+        type: 'Feature',
+        properties: {
+          name: itinerary.nome
+        },
+        geometry: {
+          type: 'LineString',
+          coordinates: this.coords,
+        }
+      }
       this.map.addSource('route', {
         type: 'geojson',
-        data: {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'LineString',
-            coordinates: this.coords,
-          }
-        },
+        data: this.mapboxData,
       })
-      this.map.addLayer({
+      .addLayer({
         id: 'route',
         type: 'line',
         source: 'route',
@@ -104,7 +119,27 @@ export class ItinerarioComponent implements OnInit {
           'line-width': 5
         }
       })
+      this.markerA = new mapbox.Marker().setLngLat(this.coords[0]).addTo(this.map)
+      this.markerB = new mapbox.Marker().setLngLat(this.coords[this.coords.length - 1]).addTo(this.map)
+      this.markerA.remove()
+      this.markerB.remove()
       this.previusId = id
+      this.centralizarRota()
+    })
+
+  }
+
+
+  centralizarRota() {
+    const coordinates = this.mapboxData.geometry.coordinates
+
+    const bounds = coordinates.reduce((bounds: any, coord: any) => {
+      return bounds.extend(coord)
+    }, new mapbox.LngLatBounds(coordinates[0], coordinates[0]))
+
+    this.map.fitBounds(bounds, {
+      padding: 100,
+      duration: 2000
     })
   }
 

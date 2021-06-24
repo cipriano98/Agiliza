@@ -4,15 +4,22 @@ import { ItinerarioModule } from '../itinerario/itinerario.module';
 import { TransportComponent } from './transport.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TransportService } from './transport.service';
-import { AngularMaterialModule } from '../shared/angular-material/angular-material.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
     CommonModule,
     FlexLayoutModule,
     ItinerarioModule,
-
-    AngularMaterialModule
+    MatCardModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatIconModule
   ],
   declarations: [TransportComponent],
   exports: [TransportComponent],
