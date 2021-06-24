@@ -1,33 +1,32 @@
 #itinerario {
-    height: 100vh;
-    overflow: overlay;
+  height: 100vh;
+  overflow: overlay;
 }
 
 #itinerary-preview {
-    width: 450px;
-    height: 30px;
-    /* top bottom right left*/
-    position: absolute;
-    top: 5px;
-    z-index: 2;
+  width: 500px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  z-index: 2;
 }
 
 #itinerary-preview .preview {
-    margin: -4px;
+  margin: -4px;
 }
 
 #itinerary-preview .img {
-    background-size: cover;
-    margin-top: -9px;
-    margin-right: 15px;
-  }
+  background-size: cover;
+  margin-top: -9px;
+  margin-right: 15px;
+}
 
 #itinerary-preview .img.img-onibus {
-    background-image: url('../../assets/img/icone2.jpg');
-    border-bottom: 5px solid blue;
+  background-image: url('../../assets/img/icone2.jpg');
+  border-bottom: 5px solid blue;
 }
 
 #itinerary-preview .img.img-lotacao {
-    background-image: url('../../assets/img/icone2.jpg');
-    border-bottom: 5px solid red;
+  background-image: url('../../assets/img/icone2.jpg');
+  border-bottom: 5px solid red;
 }

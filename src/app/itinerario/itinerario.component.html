@@ -8,11 +8,10 @@
           <mat-card-subtitle>
             Linha: {{itinerary.codigo.split('-')[0]}}
             &nbsp;&nbsp;&nbsp;
-            Sentido: {{itinerary.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
+            Sentido: {{itinerary.codigo.split('-')[1]}}
           </mat-card-subtitle>
         </div>
       </div>
     </mat-card>
   </div>
-  <div id="map" class="map-container"></div>
 </article>

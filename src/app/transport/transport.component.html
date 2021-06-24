@@ -1,12 +1,12 @@
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
-  <section id="transport" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around stretch">
+  <section id="transport" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
 
-    <article class="search">
+    <article class="search" fxLayoutAlign="space-between stretch" fxLayout="column" style="width: 435px">
       <mat-button-toggle-group (change)="changeTransport($event)">
         <mat-button-toggle checked value="o">Ônibus</mat-button-toggle>
         <mat-button-toggle value="l">Lotação</mat-button-toggle>
       </mat-button-toggle-group>
-      <mat-form-field appearance="outline" style="width: 100%; padding: 5px;">
+      <mat-form-field style="width: 100%;">
         <mat-label>Pesquisar por nome</mat-label>
         <input type="search" (input)="changeSearch($event)" matInput placeholder="Ex. Circular Centro">
         <mat-icon matPrefix>search</mat-icon>
@@ -24,7 +24,7 @@
                 <mat-card-subtitle>
                   Linha: {{transport.codigo.split('-')[0]}}
                   &nbsp;&nbsp;&nbsp;
-                  Sentido: {{transport.codigo.split('-')[1] == '1' ? 'Centro-Bairo' : 'Bairo-Centro'}}
+                  Sentido {{transport.codigo.split('-')[1]}}
                 </mat-card-subtitle>
               </div>
             </div>
@@ -37,7 +37,28 @@
           Nenhum dado encontrado
         </h1>
       </div>
+
     </article>
+
+    <article #Subtitle style="width: 435px; ">
+      <mat-card id="subtitle">
+        <div fxLayout="column">
+          <div>
+            <mat-card-title>Sentido 1:</mat-card-title>
+            <mat-card-subtitle>
+              Bairro-Terminal | Bairro-Centro | Norte-Leste Norte-Sul | Circular
+            </mat-card-subtitle>
+          </div>
+          <div>
+            <mat-card-title>Sentido 2:</mat-card-title>
+            <mat-card-subtitle>
+              Terminal-Bairro | Centro-Bairro | Leste-Norte | Sul-Norte
+            </mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card>
+    </article>
+
   </section>
 
   <section id="map" #Map>

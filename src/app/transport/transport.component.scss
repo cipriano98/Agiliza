@@ -1,8 +1,10 @@
 #transport .search {
-  height: 20vh;
+  height: 12vh;
   overflow: none;
-  width: 450px;
-  // background-color: #000;
+  margin-right: 10px;
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 5px;
 }
 
 #transport .search  mat-icon{
@@ -10,12 +12,13 @@
 }
 
 #transport .transports {
+  white-space: nowrap;
   overflow: hidden;
-  height: 70vh;
-  width: 450px;
+  height: 68vh;
 }
 
 #transport .transports-map {
+  width: 435px;
   padding: 0 5px 5px 0;
 }
 
@@ -24,21 +27,17 @@
 }
 
 #transport .transport:hover {
-  background: #fafafa;
+  background: #f5f5f5;
   cursor: pointer
 }
 
 #transport .transport {
-  margin-right: 10px;
   height: 30px;
-}
-
-#transport .transport {
   overflow: hidden;
 }
 
 #transport .transport.active {
-  background: #ccc;
+  background: #e0e0e0;
 }
 
 #transport .preview {
@@ -47,8 +46,8 @@
 
 #transport .img {
   background-size: cover;
-    margin-top: -9px;
-    margin-right: 15px;
+  margin-top: -9px;
+  margin-right: 15px;
 }
 
 #transport .img.img-onibus {
@@ -61,7 +60,13 @@
   border-bottom: 5px solid red;
 }
 
+#transport #subtitle {
+  margin-top: 10px;
+  height: 10vh;
+}
+
 #map {
+  background-color: #666;
   width: 100%;
   height: 100vh;
 }
