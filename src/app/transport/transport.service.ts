@@ -18,7 +18,6 @@ export class TransportService {
 
   public getTransport(type: Transports): Observable<Transport[]> {
     const url = `${API}&p=%&t=${type}`
-    console.dir(url);
     return this.http.get<Transport[]>(url).pipe(
       tap(
         transport => { },
