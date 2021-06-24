@@ -17,6 +17,7 @@ export class ItinerarioComponent implements OnInit {
   itinerarySelected!: Transports
   itinerary!: Itinerario
   coords: any[] = []
+  previusId!: number
   mapStyle = {
     light: 'mapbox://styles/mapbox/streets-v11',
     dark: 'mapbox://styles/mapbox/dark-v10',
@@ -42,40 +43,13 @@ export class ItinerarioComponent implements OnInit {
       ],
       zoom: 11
     })
-    this.renderMap(map)
+    this.map = map
+    this.renderMap(this.map)
   }
 
   private renderMap(map: mapbox.Map) {
-    const coordinates: any[] = this.coords
-    // const map = this.map
-    // this.coords.forEach(coord => {})
-    // coordinates.push()
-    map.on('load', () => {
-      map.addSource('route', {
-        type: 'geojson',
-        data: {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'LineString',
-            coordinates,
-          }
-        },
-      })
-      map.addControl(new mapbox.NavigationControl())
-      map.addLayer({
-        id: 'route',
-        type: 'line',
-        source: 'route',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': this.transportSelected == 'o' ? 'blue' : 'red',
-          'line-width': 5
-        }
-      })
+    this.map.on('load', () => {
+      this.map.addControl(new mapbox.NavigationControl())
     })
 
   }
@@ -101,23 +75,39 @@ export class ItinerarioComponent implements OnInit {
         }
       })
 
-      console.dir(this.coords)
-      console.dir(this.coords.length)
-      console.dir(this.coords.length - 1)
-      console.dir(this.coords.length - 1 / 2)
       const coord = +String((this.coords.length - 1) / 2).split('.')[0]
-      console.dir(coord)
 
-      const map: mapbox.Map = new mapbox.Map({
-        container: 'map',
-        style: this.mapStyle.light,
-        accessToken: environment.accessTokenMapBox,
-        center: this.coords[coord],
-        zoom: 11
+      this.map.setCenter(this.coords[coord])
+      const coordinates: any[] = this.coords
+      if (this.previusId) {
+        this.map.removeLayer('route')
+        this.map.removeSource('route')
+      }
+      this.map.addSource('route', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates,
+          }
+        },
       })
-
-      this.renderMap(map)
-      console.dir(this.coords);
+      this.map.addLayer({
+        id: 'route',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': this.transportSelected == 'o' ? 'blue' : 'red',
+          'line-width': 5
+        }
+      })
+      this.previusId = id
     })
   }
 
