@@ -67,7 +67,7 @@ export class ItinerarioComponent implements OnInit {
   }
 
   public setItinerary(id: number) {
-    if (this.previusId == id) return
+    if (this.previusId == id) return this.centralizarRota()
 
     this.service.getItinerary(id).subscribe(itinerary => {
       this.itinerary = itinerary
