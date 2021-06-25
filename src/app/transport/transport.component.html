@@ -16,6 +16,27 @@
     </article>
 
     <article class="transports">
+      <div *ngIf="applyingFilter">
+        <div *ngFor="let transport of loadLength" class="transports-map">
+          <mat-card class="transport">
+            <div fxLayout="row">
+              <div mat-card-avatar class="img">
+                <skeleton-loader SLwidth="45" SLheight="45" [SLcircle]="true"></skeleton-loader>
+              </div>
+              <div fxLayout="column" class="preview">
+                <mat-card-title>
+                  <skeleton-loader SLwidth="100" SLheight="13.5"></skeleton-loader>
+                </mat-card-title>
+                <mat-card-subtitle fxLayout="row">
+                  <skeleton-loader SLwidth="70" SLheight="13.5"></skeleton-loader>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <skeleton-loader SLwidth="70" SLheight="13.5"></skeleton-loader>
+                </mat-card-subtitle>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
       <div *ngIf="!applyingFilter && transports?.length">
         <div *ngFor="let transport of transports" class="transports-map">
           <mat-card (click)="setItinerary(transport.id)" [class]="'transport ' + isActive(transport.id)">

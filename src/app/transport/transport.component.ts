@@ -18,6 +18,7 @@ export class TransportComponent implements OnInit {
   transportsFilter!: Transport[]
   itinerary!: any
   active?: number
+  loadLength: any[] = []
   transportSelected: Transports = 'o'
 
   constructor(
@@ -25,6 +26,7 @@ export class TransportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadLength.length = 9
     this.applyingFilter = true
     this.render('o')
   }

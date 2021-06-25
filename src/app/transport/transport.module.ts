@@ -9,17 +9,24 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { SkeletonLoaderModule } from '../shared/skeleton-loader/skeleton-loader.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FlexLayoutModule,
+    // Shered
+    SkeletonLoaderModule,
+
+    // Components
     ItinerarioModule,
+
+    // Material
     MatCardModule,
     MatTooltipModule,
     MatButtonToggleModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [TransportComponent],
   exports: [TransportComponent],
