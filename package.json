@@ -7,12 +7,13 @@
     "url": "https://agilizarotas.web.app/"
   },
   "scripts": {
-    "start": "ng serve",
+    "start": "ng s",
+    "dev": "ng s -c development",
     "build": "ng build",
     "watch": "ng build --watch -c development",
     "test": "ng test",
     "firebase": "firebase deploy",
-    "deploy":  "npm ci && npm run build"
+    "deploy": "yarn && ng build"
   },
   "private": true,
   "dependencies": {
