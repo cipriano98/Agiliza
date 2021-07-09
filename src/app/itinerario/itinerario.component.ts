@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as mapbox from 'mapbox-gl'
+import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { Transports } from '../transport/transport';
@@ -69,7 +70,7 @@ export class ItinerarioComponent implements OnInit {
   public setItinerary(id: number) {
     if (this.previusId == id) return this.centralizarRota()
 
-    this.service.getItinerary(id).subscribe(itinerary => {
+    this.service.getItinerary(id).pipe(take(1)).subscribe(itinerary => {
       this.itinerary = itinerary
       this.itinerarySelected = this.transportSelected
       const coords: any = itinerary

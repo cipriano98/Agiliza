@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { take } from 'rxjs/operators';
 import { ItinerarioComponent } from '../itinerario/itinerario.component';
 import { Transport, Transports } from './transport';
 import { TransportService } from './transport.service';
@@ -50,7 +51,7 @@ export class TransportComponent implements OnInit {
   render(transport: Transports) {
     this.transports = []
     this.transportsFilter = []
-    this.service.getTransport(transport).subscribe(t => {
+    this.service.getTransport(transport).pipe(take(1)).subscribe(t => {
       this.transports = this.transportsFilter = t
       this.applyingFilter = false
     })
