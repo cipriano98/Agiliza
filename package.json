@@ -8,12 +8,13 @@
   },
   "scripts": {
     "start": "ng s",
-    "dev": "ng s -c development",
+    "dev": "ng s -c development --hmr",
     "build": "ng build",
     "watch": "ng build --watch -c development",
     "test": "ng test",
     "firebase": "firebase deploy",
-    "deploy": "yarn && ng build"
+    "deploy": "yarn && ng build",
+    "rm": "rimraf"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
     "mapbox-gl": "^2.3.1",
+    "rimraf": "^3.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
